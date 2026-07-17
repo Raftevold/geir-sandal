@@ -19,8 +19,8 @@
     }
   },
   "varsel": {
-    "aktiv": true,
-    "tekst": "PERSISTENSTEST 2026-07-17",
+    "aktiv": false,
+    "tekst": "",
     "lenkje": ""
   },
   "heim": {
