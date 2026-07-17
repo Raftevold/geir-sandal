@@ -1,0 +1,38 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="sidetopp">
+  <div class="ramme">
+    <p class="kicker"><a href="/tjenester" style="color:inherit; text-decoration:none;">Tjenester</a></p>
+    <h1><%= teneste.tittel %></h1>
+    <p class="ingress"><%= teneste.kort %></p>
+  </div>
+</section>
+
+<section class="seksjon">
+  <div class="ramme delt">
+    <div class="brodtekst reveal">
+      <p><%- nl2br(teneste.brodtekst) %></p>
+      <div class="cta-knappar" style="margin-top: 1.8rem;">
+        <a class="knapp knapp-primar" href="/kontakt#skjema">Be om tilbud</a>
+        <a class="knapp knapp-lys" href="<%= telHref(c.site.telefon) %>">Ring <%= c.site.telefon %></a>
+      </div>
+    </div>
+    <aside class="reveal" data-reveal="hogre">
+      <% if (teneste.bilete) { %>
+        <figure class="plasshaldar-ramme"><img src="/media/<%= teneste.bilete %>" alt="<%= teneste.tittel %>" width="560" height="380" loading="lazy"></figure>
+      <% } else { %>
+        <div class="plasshaldar-ramme"><%- include('partials/plasshaldar') %></div>
+      <% } %>
+      <h2 style="font-size:1.1rem; margin-top:1.6rem;">Andre tjenester</h2>
+      <ul class="botn-meny" style="margin-top:0.5rem;">
+        <% c.tenester.filter((x) => x.slug !== teneste.slug).forEach((x) => { %>
+          <li><a class="lenkje-pil" href="/tjenester/<%= x.slug %>"><%= x.tittel %> <span aria-hidden="true">→</span></a></li>
+        <% }) %>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/cta-band') %>
+<%- include('partials/footer') %>

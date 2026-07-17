@@ -1,0 +1,35 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="sidetopp">
+  <div class="ramme">
+    <h1>Personvernerklæring</h1>
+    <p class="ingress">Slik behandler <%= c.site.namn %> personopplysninger på dette nettstedet.</p>
+  </div>
+</section>
+
+<section class="seksjon">
+  <div class="ramme brodtekst smal">
+    <h2>Behandlingsansvarlig</h2>
+    <p><%= c.site.namn %> (org.nr <%= c.site.orgnr %>), <%= c.site.adresse.gate %>, <%= c.site.adresse.postnr %> <%= c.site.adresse.stad %>, er behandlingsansvarlig for personopplysninger som samles inn på dette nettstedet. Kontakt oss på <a href="mailto:<%= c.site.epost %>"><%= c.site.epost %></a> eller telefon <a href="<%= telHref(c.site.telefon) %>"><%= c.site.telefon %></a> om du har spørsmål.</p>
+
+    <h2>Informasjonskapsler (cookies)</h2>
+    <p>De åpne sidene på dette nettstedet bruker <strong>ingen informasjonskapsler</strong> og ingen sporings- eller analyseverktøy fra tredjepart. Derfor trenger vi heller ikke vise deg et samtykkevindu.</p>
+    <p>Unntaket er administrasjonsområdet for ansatte i bedriften, som bruker én strengt nødvendig innloggingskapsel («sid»). Slike nødvendige kapsler krever ikke samtykke etter ekomloven § 3-15.</p>
+
+    <h2>Kontaktskjemaet</h2>
+    <p>Når du sender inn kontaktskjemaet, behandler vi opplysningene du selv oppgir: navn, telefonnummer og/eller e-postadresse, og meldingen din. Behandlingsgrunnlaget er GDPR artikkel 6 nr. 1 bokstav b (gjennomføre tiltak før en eventuell avtale) og bokstav f (svare på henvendelser).</p>
+    <p>Opplysningene brukes bare til å svare på henvendelsen din<% if (smtpAktiv) { %> og sendes videre til e-posten vår<% } %>. De slettes når henvendelsen er ferdig behandlet, senest innen 12 måneder.</p>
+
+    <h2>Serverlogger og drift</h2>
+    <p>Nettstedet driftes på plattformen Render (Render Services, Inc.). Som ledd i vanlig drift kan serveren logge IP-adresser og tekniske hendelser i en kort periode av sikkerhetshensyn. Henvendelser fra kontaktskjemaet lagres internt i løsningen, og bare bedriften har tilgang til dem.</p>
+
+    <h2>Rettighetene dine</h2>
+    <p>Du har rett til innsyn i, retting av og sletting av personopplysningene dine, og til å protestere mot eller kreve begrenset behandling. Ta kontakt på <a href="mailto:<%= c.site.epost %>"><%= c.site.epost %></a>, så hjelper vi deg. Du kan også klage til <a href="https://www.datatilsynet.no" rel="noopener">Datatilsynet</a> om du mener behandlingen vår bryter med regelverket.</p>
+
+    <h2>Endringer</h2>
+    <p>Denne erklæringen kan bli oppdatert ved behov, for eksempel om nettstedet får ny funksjonalitet. Vesentlige endringer varsles på denne siden.</p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

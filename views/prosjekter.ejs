@@ -1,0 +1,33 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="sidetopp">
+  <div class="ramme">
+    <p class="kicker">Det vi har gjort</p>
+    <h1>Prosjekter</h1>
+    <p class="ingress"><%= c.prosjekt.ingress %></p>
+  </div>
+</section>
+
+<section class="seksjon">
+  <div class="ramme">
+    <% if (c.prosjekt.liste.length === 0) { %>
+      <p class="ingress reveal">Prosjektgalleriet er under oppbygging. Ta kontakt, så forteller vi gjerne om arbeid vi har gjort i nærheten av deg.</p>
+    <% } %>
+    <div class="galleri">
+      <% c.prosjekt.liste.forEach((p, i) => { %>
+        <figure class="reveal" style="--forseink: <%= (i % 3) * 100 %>ms">
+          <% if (p.bilete.length) { %>
+            <img src="/media/<%= p.bilete[0] %>" alt="<%= p.tittel %>" width="400" height="300" loading="lazy">
+          <% } else { %>
+            <%- include('partials/plasshaldar') %>
+          <% } %>
+          <figcaption><strong><%= p.tittel %></strong><% if (p.skildring) { %><br><%= p.skildring %><% } %></figcaption>
+        </figure>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta-band') %>
+<%- include('partials/footer') %>

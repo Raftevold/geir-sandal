@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title><%= tittel %> – Admin – Geir Sandal</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/admin.css?v=<%= assetV %>">
+</head>
+<body>
+<header class="a-topp">
+  <div class="a-ramme a-topp-inner">
+    <a class="a-logo" href="/admin">🚜 Geir Sandal – admin</a>
+    <nav aria-label="Adminmeny">
+      <ul class="a-meny">
+        <li><a href="/admin" <%= aktiv === 'oversikt' ? 'aria-current="page"' : '' %>>Oversikt</a></li>
+        <li><a href="/admin/tekst" <%= aktiv === 'tekst' ? 'aria-current="page"' : '' %>>Tekst</a></li>
+        <li><a href="/admin/tenester" <%= aktiv === 'tenester' ? 'aria-current="page"' : '' %>>Tjenester</a></li>
+        <li><a href="/admin/prosjekt" <%= aktiv === 'prosjekt' ? 'aria-current="page"' : '' %>>Prosjekter</a></li>
+        <li><a href="/admin/referansar" <%= aktiv === 'referansar' ? 'aria-current="page"' : '' %>>Referanser</a></li>
+        <li><a href="/admin/bilete" <%= aktiv === 'bilete' ? 'aria-current="page"' : '' %>>Bilder</a></li>
+        <li><a href="/admin/kontaktinfo" <%= aktiv === 'kontaktinfo' ? 'aria-current="page"' : '' %>>Kontaktinfo</a></li>
+        <li><a href="/admin/varsel" <%= aktiv === 'varsel' ? 'aria-current="page"' : '' %>>Varsellinje</a></li>
+        <li><a href="/admin/seo" <%= aktiv === 'seo' ? 'aria-current="page"' : '' %>>SEO</a></li>
+        <li><a href="/admin/forespurnader" <%= aktiv === 'forespurnader' ? 'aria-current="page"' : '' %>>Henvendelser</a></li>
+      </ul>
+    </nav>
+    <div class="a-topp-hogre">
+      <a href="/" target="_blank" rel="noopener">Se nettsiden ↗</a>
+      <form method="post" action="/admin/logout"><button class="a-knapp a-knapp-grå" type="submit">Logg ut</button></form>
+    </div>
+  </div>
+</header>
+<main class="a-ramme a-hovud">
+  <h1><%= tittel %></h1>
+  <% if (typeof lagra !== 'undefined' && lagra) { %>
+    <p class="a-melding a-melding-ok" role="status">✓ Lagret. Endringen er synlig på nettsiden med en gang.</p>
+  <% } %>
+  <% if (typeof feil !== 'undefined' && feil) { %>
+    <p class="a-melding a-melding-feil" role="alert"><%= feil %></p>
+  <% } %>

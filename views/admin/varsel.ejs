@@ -1,0 +1,20 @@
+<%- include('partials/admin-topp', { tittel: 'Varsellinje', aktiv: 'varsel' }) %>
+
+<p class="a-ingress">Varsellinjen vises øverst på alle sider – nyttig ved ferie, kampanjer eller driftsmeldinger. Legger du inn en lenke, blir hele linjen klikkbar.</p>
+
+<section class="a-seksjon">
+  <form method="post" action="/admin/varsel">
+    <label class="a-slett"><input type="checkbox" name="aktiv" <%= c.varsel.aktiv ? 'checked' : '' %>> Vis varsellinjen</label>
+    <label for="tekst">Tekst</label>
+    <input id="tekst" name="tekst" value="<%= c.varsel.tekst %>" maxlength="140" placeholder="F.eks. «Vi har feriestengt uke 28–30 – god sommer!»">
+    <label for="lenkje">Lenke (valgfritt)</label>
+    <input id="lenkje" name="lenkje" value="<%= c.varsel.lenkje %>" placeholder="F.eks. /kontakt">
+    <button class="a-knapp" type="submit">Lagre varsellinje</button>
+  </form>
+</section>
+
+<% if (c.varsel.aktiv && c.varsel.tekst) { %>
+<p>Slik ser den ut nå: <a href="/" target="_blank" rel="noopener">åpne nettsiden ↗</a></p>
+<% } %>
+
+<%- include('partials/admin-botn') %>

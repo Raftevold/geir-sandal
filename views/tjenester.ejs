@@ -1,0 +1,32 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="sidetopp">
+  <div class="ramme">
+    <p class="kicker">Det vi gjør</p>
+    <h1>Tjenester</h1>
+    <p class="ingress">Grunnarbeid er kjernen i alt vi gjør. Her er fagområdene våre – med sentral godkjenning i tiltaksklasse 2 der det gjelder.</p>
+  </div>
+</section>
+
+<section class="seksjon">
+  <div class="ramme">
+    <div class="kort-rad">
+      <% c.tenester.forEach((t, i) => { %>
+        <a class="kort kort-lenkje reveal" style="--forseink: <%= (i % 3) * 100 %>ms" href="/tjenester/<%= t.slug %>">
+          <% if (t.bilete) { %>
+            <div class="kort-bilete-hald"><img src="/media/<%= t.bilete %>" alt="" width="400" height="240" loading="lazy"></div>
+          <% } else { %>
+            <div class="kort-ikon" style="margin: 1.4rem 1.4rem 0;"><%- include('partials/ikon', { namn: t.slug }) %></div>
+          <% } %>
+          <h2 style="font-size:1.22rem; margin: 1.1rem 1.4rem 0.3rem;"><%= t.tittel %></h2>
+          <p><%= t.kort %></p>
+          <span class="lenkje-pil">Les mer <span aria-hidden="true">→</span></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta-band') %>
+<%- include('partials/footer') %>

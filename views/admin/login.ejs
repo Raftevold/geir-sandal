@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Logg inn – Admin – Geir Sandal</title>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/admin.css?v=<%= assetV %>">
+</head>
+<body class="a-login-side">
+  <main class="a-login-boks">
+    <h1>🚜 Geir Sandal<br><span>Administrasjon</span></h1>
+    <% if (feil) { %><p class="a-melding a-melding-feil" role="alert"><%= feil %></p><% } %>
+    <% if (!konfigurert) { %>
+      <p class="a-melding a-melding-feil">Admin er ikke konfigurert ennå (ADMIN_PASSWORD_HASH mangler som miljøvariabel).</p>
+    <% } %>
+    <form method="post" action="/admin/login">
+      <label for="passord">Passord</label>
+      <input id="passord" name="passord" type="password" required autocomplete="current-password" autofocus>
+      <button class="a-knapp" type="submit">Logg inn</button>
+    </form>
+    <p class="a-login-fot"><a href="/">← Tilbake til nettsiden</a></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="sidetopp">
+  <div class="ramme">
+    <p class="kicker">Siden 1984</p>
+    <h1>Om Geir Sandal AS</h1>
+    <p class="ingress"><%= c.omOss.ingress %></p>
+  </div>
+</section>
+
+<section class="seksjon">
+  <div class="ramme delt">
+    <div class="brodtekst reveal">
+      <p><%- nl2br(c.omOss.brodtekst) %></p>
+    </div>
+    <aside>
+      <% if (c.omOss.folk.length) { %>
+      <div class="kort reveal" data-reveal="hogre" style="margin-bottom: 1.4rem;">
+        <h2 style="font-size:1.1rem;">Folkene våre</h2>
+        <ul class="kontakt-liste" style="margin-top: 0.8rem;">
+          <% c.omOss.folk.forEach((f) => { %>
+            <li><strong><%= f.rolle %></strong><span><%= f.namn %></span></li>
+          <% }) %>
+        </ul>
+      </div>
+      <% } %>
+      <div class="kort reveal" data-reveal="hogre" style="--forseink: 120ms;">
+        <h2 style="font-size:1.1rem;">Nøkkelfakta</h2>
+        <ul class="kontakt-liste" style="margin-top: 0.8rem;">
+          <li><strong>Org.nr</strong><span><%= c.site.orgnr %></span></li>
+          <li><strong>Virksomhet siden</strong><span>1984 (AS fra 1997)</span></li>
+          <li><strong>Ansatte</strong><span>21</span></li>
+          <li><strong>Base</strong><span><%= c.site.adresse.gate %>, <%= c.site.adresse.postnr %> <%= c.site.adresse.stad %></span></li>
+          <li><strong>Arbeidsområde</strong><span><%= c.site.omrade %></span></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="seksjon seksjon-mork">
+  <div class="ramme delt reveal">
+    <div>
+      <p class="kicker">Dokumentert kvalitet</p>
+      <h2>Godkjenninger og medlemskap</h2>
+      <p>Sentral godkjenning betyr at Direktoratet for byggkvalitet har vurdert og godkjent kompetansen og kvalitetssystemene våre. Godkjenningen kan når som helst kontrolleres i det offentlige registeret.</p>
+    </div>
+    <ul class="merke-liste">
+      <li><strong>Vei- og grunnarbeider</strong><span>Sentral godkjenning, utførende tiltaksklasse 2</span></li>
+      <li><strong>Landskapsutforming</strong><span>Sentral godkjenning, utførende tiltaksklasse 2</span></li>
+      <li><strong>VA-anlegg</strong><span>Sentral godkjenning, utførende tiltaksklasse 2</span></li>
+      <li><strong>Godkjent lærebedrift</strong><span>Anleggsmaskinførerfaget</span></li>
+      <li><strong>Medlem i NLF</strong><span>Norges Lastebileier-Forbund</span></li>
+    </ul>
+  </div>
+</section>
+
+<%- include('partials/cta-band') %>
+<%- include('partials/footer') %>

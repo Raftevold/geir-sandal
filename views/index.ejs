@@ -1,0 +1,206 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<section class="hero">
+  <div class="ramme hero-inner">
+    <div class="hero-tekst">
+      <p class="hero-etikett"><span aria-hidden="true">◆</span> <%= c.heim.heroEtikett %></p>
+      <h1><% c.heim.heroTittel.split(' ').forEach((ord, i) => { %><span class="ord" style="--i:<%= i %>"><span><%= ord %></span></span> <% }) %></h1>
+      <p class="hero-ingress"><%= c.heim.heroIngress %></p>
+      <div class="cta-knappar">
+        <a class="knapp knapp-primar" href="/kontakt#skjema">Be om uforpliktende tilbud</a>
+        <a class="knapp knapp-omriss-lys" href="<%= telHref(c.site.telefon) %>">Ring <%= c.site.telefon %></a>
+      </div>
+      <% if (c.heim.fakta && c.heim.fakta.length) { %>
+      <ul class="hero-fakta">
+        <% c.heim.fakta.forEach((f) => { %>
+          <li><strong><span data-tal="<%= f.tal %>"><%= f.tal %></span><%= f.suffiks %></strong><span><%= f.etikett %></span></li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </div>
+    <div class="hero-scene" aria-hidden="true">
+      <svg class="grav" viewBox="0 0 520 340" focusable="false">
+        <ellipse cx="270" cy="324" rx="210" ry="10" fill="rgba(0,0,0,0.3)"/>
+        <g class="grav-arm">
+          <path d="M296,246 L138,118 L156,100 L310,222 Z" fill="#d18f00"/>
+          <path d="M258,204 L204,160 L210,153 L264,197 Z" fill="#57534a"/>
+          <g class="grav-stikke">
+            <path d="M146,110 L96,232 L78,226 L128,104 Z" fill="#b87f00"/>
+            <g class="grav-skuffe">
+              <path d="M88,236 L52,244 L44,282 L96,290 Z" fill="#57534a"/>
+              <path d="M46,282 L36,293 L52,289 Z M58,285 L50,296 L64,291 Z M72,288 L66,299 L78,293 Z" fill="#3a3733"/>
+              <circle cx="88" cy="238" r="6" fill="#2b303a"/>
+            </g>
+            <circle cx="140" cy="112" r="7" fill="#2b303a"/>
+          </g>
+        </g>
+        <g class="grav-belte">
+          <rect x="205" y="252" width="170" height="24" rx="6" fill="#2b303a"/>
+          <rect x="190" y="272" width="200" height="46" rx="23" fill="currentColor"/>
+          <circle cx="215" cy="295" r="12" fill="#3a4150"/>
+          <circle cx="253" cy="295" r="12" fill="#3a4150"/>
+          <circle cx="291" cy="295" r="12" fill="#3a4150"/>
+          <circle cx="329" cy="295" r="12" fill="#3a4150"/>
+          <circle cx="364" cy="295" r="12" fill="#3a4150"/>
+        </g>
+        <rect x="350" y="178" width="9" height="20" rx="3.5" fill="#2b303a"/>
+        <rect x="210" y="196" width="166" height="58" rx="10" fill="currentColor"/>
+        <rect x="342" y="200" width="46" height="50" rx="8" fill="currentColor" opacity="0.82"/>
+        <g class="grav-hytte">
+          <rect x="210" y="152" width="66" height="82" rx="9" fill="currentColor"/>
+          <rect class="grav-glas" x="218" y="160" width="42" height="34" rx="4" fill="currentColor"/>
+        </g>
+        <circle cx="298" cy="236" r="8" fill="#2b303a"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-strata">
+    <svg class="strata-1" data-par="0.5" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,180 L0,95 L210,60 L420,105 L640,45 L900,110 L1120,65 L1290,95 L1440,60 L1440,180 Z" fill="currentColor"/></svg>
+    <svg class="strata-2" data-par="0.25" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,180 L0,120 L260,95 L520,130 L780,85 L1040,125 L1260,100 L1440,120 L1440,180 Z" fill="currentColor"/></svg>
+    <svg class="strata-3" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,186 L0,150 L360,132 L720,152 L1080,128 L1440,148 L1440,186 Z" fill="currentColor"/></svg>
+  </div>
+</section>
+
+<section class="seksjon">
+  <div class="ramme">
+    <div class="kort-rad">
+      <% const punktIkon = [
+        '<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 2l11 4v8c0 7.5-4.7 13.2-11 16C9.7 27.2 5 21.5 5 14V6l11-4z" fill="currentColor" opacity=".35"/><path d="M14.4 21.5l-4.6-4.6 2.1-2.1 2.5 2.5 6-6 2.1 2.1-8.1 8.1z" fill="currentColor"/></svg>',
+        '<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 2C10.5 2 6 6.5 6 12c0 7.5 10 18 10 18s10-10.5 10-18c0-5.5-4.5-10-10-10z" fill="currentColor" opacity=".35"/><circle cx="16" cy="12" r="4.5" fill="currentColor"/></svg>',
+        '<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 5L2 12l14 7 11.5-5.75V22h2.5v-9.4L16 5z" fill="currentColor"/><path d="M8 18.5V23c0 2.2 3.6 4 8 4s8-1.8 8-4v-4.5l-8 4-8-4z" fill="currentColor" opacity=".55"/></svg>'
+      ]; %>
+      <% c.heim.punkt.forEach((p, i) => { %>
+        <article class="kort reveal" style="--forseink: <%= i * 100 %>ms">
+          <div class="kort-ikon"><%- punktIkon[i] || punktIkon[0] %></div>
+          <h2><%= p.tittel %></h2>
+          <p><%= p.tekst %></p>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true">
+  <div class="band-inner">
+    <% for (let kopi = 0; kopi < 2; kopi++) { %>
+    <ul class="band-liste">
+      <% c.tenester.forEach((t) => { %><li><%= t.tittel %></li><% }) %>
+      <li>Siden 1984</li>
+      <li><%= c.site.omrade %></li>
+    </ul>
+    <% } %>
+  </div>
+</div>
+
+<section class="seksjon seksjon-bein">
+  <div class="ramme">
+    <div class="seksjon-topp reveal">
+      <div>
+        <p class="kicker">Det vi gjør</p>
+        <h2>Tjenester</h2>
+      </div>
+      <a class="lenkje-pil" href="/tjenester">Alle tjenester <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="kort-rad">
+      <% c.tenester.slice(0, 3).forEach((t, i) => { %>
+        <a class="kort kort-lenkje reveal" style="--forseink: <%= i * 100 %>ms" href="/tjenester/<%= t.slug %>">
+          <% if (t.bilete) { %>
+            <div class="kort-bilete-hald"><img src="/media/<%= t.bilete %>" alt="" width="400" height="240" loading="lazy"></div>
+          <% } else { %>
+            <div class="kort-ikon" style="margin: 1.4rem 1.4rem 0;"><%- include('partials/ikon', { namn: t.slug }) %></div>
+          <% } %>
+          <h3><%= t.tittel %></h3>
+          <p><%= t.kort %></p>
+          <span class="lenkje-pil">Les mer <span aria-hidden="true">→</span></span>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="seksjon seksjon-mork">
+  <div class="ramme delt reveal">
+    <div>
+      <p class="kicker">Dokumentert kvalitet</p>
+      <h2>Godkjenninger du kan sjekke selv</h2>
+      <p>Vi mener kvalitet skal kunne dokumenteres, ikke bare loves. Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for tre fagområder, er godkjent lærebedrift i anleggsmaskinførerfaget og medlem i Norges Lastebileier-Forbund.</p>
+      <p><a class="lenkje-pil lenkje-lys" href="/om-oss">Bli bedre kjent med oss <span aria-hidden="true">→</span></a></p>
+    </div>
+    <ul class="merke-liste">
+      <li><strong>Sentral godkjenning · tiltaksklasse 2</strong><span>Vei- og grunnarbeider · Landskapsutforming · VA-anlegg (DiBK, gyldig til 2028)</span></li>
+      <li><strong>Godkjent lærebedrift</strong><span>Anleggsmaskinførerfaget – vi utdanner nye fagfolk</span></li>
+      <li><strong>Medlem i NLF</strong><span>Norges Lastebileier-Forbund</span></li>
+      <li><strong>21 ansatte</strong><span>Registrert i Brønnøysundregistrene</span></li>
+    </ul>
+  </div>
+</section>
+
+<% if (c.prosjekt.liste.length) { %>
+<section class="seksjon">
+  <div class="ramme delt">
+    <div class="reveal" data-reveal="venstre">
+      <p class="kicker">Referanseprosjekt</p>
+      <h2><%= c.prosjekt.liste[0].tittel %></h2>
+      <p><%= c.prosjekt.liste[0].skildring %></p>
+      <p><a class="lenkje-pil" href="/prosjekter">Se prosjektene våre <span aria-hidden="true">→</span></a></p>
+    </div>
+    <div class="reveal" data-reveal="hogre">
+      <% if (c.prosjekt.liste[0].bilete.length) { %>
+        <figure class="plasshaldar-ramme"><img src="/media/<%= c.prosjekt.liste[0].bilete[0] %>" alt="<%= c.prosjekt.liste[0].tittel %>" width="560" height="380" loading="lazy"></figure>
+      <% } else { %>
+        <div class="plasshaldar-ramme"><%- include('partials/plasshaldar') %></div>
+      <% } %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<% if (c.referansar.vis && c.referansar.liste.length) { %>
+<section class="seksjon seksjon-bein">
+  <div class="ramme">
+    <h2 class="reveal">Det sier kundene</h2>
+    <div class="kort-rad">
+      <% c.referansar.liste.forEach((r, i) => { %>
+        <blockquote class="kort sitat reveal" style="--forseink: <%= i * 100 %>ms">
+          <p>«<%= r.tekst %>»</p>
+          <footer>— <%= r.namn %><% if (r.kjelde) { %> <span class="sitat-kjelde">(<%= r.kjelde %>)</span><% } %></footer>
+        </blockquote>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<section class="seksjon seksjon-bein prosess">
+  <div class="ramme">
+    <div class="seksjon-topp reveal">
+      <div>
+        <p class="kicker">Slik jobber vi</p>
+        <h2>Fra første telefon til ferdig anlegg</h2>
+      </div>
+    </div>
+    <div class="prosess-rad">
+      <div class="prosess-linje" aria-hidden="true"><svg viewBox="0 0 100 4" preserveAspectRatio="none" focusable="false"><path pathLength="1" d="M0,2 L100,2"/></svg></div>
+      <div class="steg reveal" style="--forseink: 0ms">
+        <h3>Ta kontakt</h3>
+        <p>Ring, send e-post eller bruk skjemaet. Fortell kort hva du planlegger.</p>
+      </div>
+      <div class="steg reveal" style="--forseink: 120ms">
+        <h3>Befaring og tilbud</h3>
+        <p>Vi ser på forholdene der du er, og gir deg et konkret, uforpliktende tilbud.</p>
+      </div>
+      <div class="steg reveal" style="--forseink: 240ms">
+        <h3>Utførelse</h3>
+        <p>Egne folk og egne maskiner gjør jobben – trygt, ryddig og til avtalt tid.</p>
+      </div>
+      <div class="steg reveal" style="--forseink: 360ms">
+        <h3>Overlevering</h3>
+        <p>Du får et ferdig anlegg som er klart for neste steg i prosjektet ditt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/cta-band') %>
+<%- include('partials/footer') %>
