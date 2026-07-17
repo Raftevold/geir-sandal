@@ -5,22 +5,45 @@
     "slagord": "Maskinentreprenør i Nordfjord – siden 1984",
     "telefon": "57 85 45 55",
     "epost": "post@geirsandal.no",
-    "adresse": { "gate": "Myrane 14", "postnr": "6718", "stad": "Deknepollen" },
+    "adresse": {
+      "gate": "Myrane 14",
+      "postnr": "6718",
+      "stad": "Deknepollen"
+    },
     "orgnr": "978 620 779",
     "omrade": "Måløy, Kinn og Nordfjord",
     "opningstider": "",
-    "sosiale": { "facebook": "https://www.facebook.com/p/Geir-Sandal-AS-100057566706247/", "instagram": "" }
+    "sosiale": {
+      "facebook": "https://www.facebook.com/p/Geir-Sandal-AS-100057566706247/",
+      "instagram": ""
+    }
   },
-  "varsel": { "aktiv": false, "tekst": "", "lenkje": "" },
+  "varsel": {
+    "aktiv": true,
+    "tekst": "PERSISTENSTEST 2026-07-17",
+    "lenkje": ""
+  },
   "heim": {
     "heroEtikett": "Maskinentreprenør · Deknepollen i Nordfjord",
     "heroTittel": "Vi legger grunnlaget i Nordfjord",
     "heroIngress": "Geir Sandal AS er en maskinentreprenør i Deknepollen ved Måløy med 21 ansatte og røtter tilbake til 1984. Vi tar på oss grunnarbeid, vei, VA-anlegg, landskapsutforming og massetransport – og gir deg gjerne et uforpliktende tilbud.",
     "heroBilete": "",
     "fakta": [
-      { "tal": 21, "suffiks": "", "etikett": "ansatte" },
-      { "tal": 40, "suffiks": "+", "etikett": "år med erfaring" },
-      { "tal": 3, "suffiks": "", "etikett": "godkjenningsområder i tiltaksklasse 2" }
+      {
+        "tal": 21,
+        "suffiks": "",
+        "etikett": "ansatte"
+      },
+      {
+        "tal": 40,
+        "suffiks": "+",
+        "etikett": "år med erfaring"
+      },
+      {
+        "tal": 3,
+        "suffiks": "",
+        "etikett": "godkjenningsområder i tiltaksklasse 2"
+      }
     ],
     "punkt": [
       {
@@ -94,7 +117,10 @@
     "ingress": "Geir Sandal AS er en maskinentreprenør i Deknepollen ved Måløy med 21 ansatte. Virksomheten har røtter tilbake til 1984 og har vært aksjeselskap siden 1997.",
     "brodtekst": "Fra basen på Myrane i Deknepollen tar vi på oss oppdrag i Måløy, Kinn og hele Nordfjord – fra tomtegraving for private til større anlegg for hovedentreprenører og det offentlige. I 2024 omsatte selskapet for om lag 24 millioner kroner, og blant referansene våre er grunnarbeidet for Nye Øksenelvane kraftverk i Ålfoten, som underentreprenør for Skanska.\n\nKvalitet skal kunne dokumenteres: Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for veg- og grunnarbeider, landskapsutforming og VA-anlegg, gyldig til 29. desember 2028. Vi er også medlem i Norges Lastebileier-Forbund.\n\nVi tar samfunnsansvar på alvor. Som godkjent lærebedrift i anleggsmaskinførerfaget er vi med på å utdanne nye fagfolk, og i 2017 lakkerte vi en av gravemaskinene våre rosa og lovet 20 prosent av inntektene fra maskinen i et helt år til Brystkreftforeningen.",
     "folk": [
-      { "namn": "Joakim Hessevik Sandal", "rolle": "Daglig leder" }
+      {
+        "namn": "Joakim Hessevik Sandal",
+        "rolle": "Daglig leder"
+      }
     ]
   },
   "referansar": {
