@@ -283,7 +283,12 @@ html.js .grav-skuffe { transform-origin: 17% 70%; animation: grav-skuffe 9s ease
 html.js .band-inner { animation: band-rulle 32s linear infinite; }
 .band:hover .band-inner { animation-play-state: paused; }
 .band-liste { display: flex; align-items: center; gap: 2.6rem; list-style: none; padding-right: 2.6rem; white-space: nowrap; }
-.band-liste li { font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.92rem; color: var(--stal); }
+.band-liste li {
+  font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.92rem;
+  color: var(--stal);
+  /* Eksplisitt bakgrunn (same som bandet): let kontrastverktøy måle rett par */
+  background: var(--jord);
+}
 .band-liste li::before { content: '◆'; color: var(--amber); margin-right: 2.6rem; font-size: 0.7rem; vertical-align: 2px; }
 @keyframes band-rulle { to { transform: translateX(-50%); } }
 
