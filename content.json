@@ -1,0 +1,134 @@
+{
+  "site": {
+    "namn": "Geir Sandal AS",
+    "kortnamn": "Geir Sandal",
+    "slagord": "Maskinentreprenør i Nordfjord – siden 1984",
+    "telefon": "57 85 45 55",
+    "epost": "post@geirsandal.no",
+    "adresse": { "gate": "Myrane 14", "postnr": "6718", "stad": "Deknepollen" },
+    "orgnr": "978 620 779",
+    "omrade": "Måløy, Kinn og Nordfjord",
+    "opningstider": "",
+    "sosiale": { "facebook": "https://www.facebook.com/p/Geir-Sandal-AS-100057566706247/", "instagram": "" }
+  },
+  "varsel": { "aktiv": false, "tekst": "", "lenkje": "" },
+  "heim": {
+    "heroEtikett": "Maskinentreprenør · Deknepollen i Nordfjord",
+    "heroTittel": "Vi legger grunnlaget i Nordfjord",
+    "heroIngress": "Geir Sandal AS er en maskinentreprenør i Deknepollen ved Måløy med 21 ansatte og røtter tilbake til 1984. Vi tar på oss grunnarbeid, vei, VA-anlegg, landskapsutforming og massetransport – og gir deg gjerne et uforpliktende tilbud.",
+    "heroBilete": "",
+    "fakta": [
+      { "tal": 21, "suffiks": "", "etikett": "ansatte" },
+      { "tal": 40, "suffiks": "+", "etikett": "år med erfaring" },
+      { "tal": 3, "suffiks": "", "etikett": "godkjenningsområder i tiltaksklasse 2" }
+    ],
+    "punkt": [
+      {
+        "tittel": "Sentralt godkjent foretak",
+        "tekst": "Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for veg- og grunnarbeider, landskapsutforming og VA-anlegg – gyldig til 29. desember 2028."
+      },
+      {
+        "tittel": "Lokal siden 1984",
+        "tekst": "Virksomheten har drevet fra Deknepollen ved Måløy siden 1984. Kort vei, lokal kunnskap om grunn og vær, og folk du kan snakke direkte med."
+      },
+      {
+        "tittel": "Godkjent lærebedrift",
+        "tekst": "Vi er godkjent lærebedrift i anleggsmaskinførerfaget og er med på å utdanne nye fagfolk til anleggsbransjen."
+      }
+    ]
+  },
+  "tenester": [
+    {
+      "id": "t1",
+      "slug": "grunnarbeid-og-graving",
+      "tittel": "Grunnarbeid og graving",
+      "kort": "Byggegroper, tomter og alt av gravearbeid – kjernen i det vi har gjort siden 1984.",
+      "brodtekst": "Grunnarbeid er selve kjernevirksomheten vår og det virksomheten er registrert på i Brønnøysundregistrene. Vi graver ut og klargjør byggegroper og tomter, og tar på oss gravearbeid for både bedrifter, det offentlige og private.\n\nMed 21 ansatte og over 40 års erfaring fra grunnforholdene i Nordfjord vet vi hva som kreves for at resten av prosjektet skal stå trygt.\n\nTa kontakt og fortell om prosjektet ditt, så gir vi deg et uforpliktende tilbud.",
+      "bilete": ""
+    },
+    {
+      "id": "t2",
+      "slug": "vei-og-grunnarbeid",
+      "tittel": "Vei- og grunnarbeider",
+      "kort": "Sentralt godkjent i tiltaksklasse 2 for veg- og grunnarbeider.",
+      "brodtekst": "Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet som utførende i tiltaksklasse 2 for veg- og grunnarbeider (det offisielle navnet på godkjenningsområdet). Det betyr at kompetansen og kvalitetssystemene våre er vurdert og godkjent av myndighetene.\n\nVi bygger og opparbeider veier, plasser og annen infrastruktur – fra mindre adkomstveier til større anlegg.\n\nTa kontakt for en prat om prosjektet ditt.",
+      "bilete": ""
+    },
+    {
+      "id": "t3",
+      "slug": "va-anlegg",
+      "tittel": "VA-anlegg – vann og avløp",
+      "kort": "Sentralt godkjent i tiltaksklasse 2 for vannforsynings- og avløpsanlegg.",
+      "brodtekst": "Vann- og avløpsanlegg krever fagkunnskap og dokumentert kvalitet. Geir Sandal AS har sentral godkjenning som utførende i tiltaksklasse 2 for vannforsynings- og avløpsanlegg.\n\nVi legger og fornyer VA-anlegg for kommuner, bedrifter og private – solid håndverk som skal ligge trygt i bakken i generasjoner.\n\nKontakt oss for et uforpliktende tilbud.",
+      "bilete": ""
+    },
+    {
+      "id": "t4",
+      "slug": "landskapsutforming",
+      "tittel": "Landskapsutforming",
+      "kort": "Sentralt godkjent i tiltaksklasse 2 for landskapsutforming.",
+      "brodtekst": "Uteområder, terrengforming og opparbeidelse av grøntanlegg – Geir Sandal AS har sentral godkjenning som utførende i tiltaksklasse 2 for landskapsutforming.\n\nVi former terrenget rundt bygg og anlegg slik at resultatet blir funksjonelt, pent og varig.\n\nTa kontakt, så ser vi på mulighetene sammen.",
+      "bilete": ""
+    },
+    {
+      "id": "t5",
+      "slug": "massetransport",
+      "tittel": "Massetransport",
+      "kort": "Transport av masser med egne biler – medlem i Norges Lastebileier-Forbund.",
+      "brodtekst": "Vi transporterer masser til og fra anlegg, og er medlem i Norges Lastebileier-Forbund (NLF).\n\nMed egen transportkapasitet kan vi ta hånd om hele jobben – fra graving til bortkjøring og levering av masser – uten å vente på andre.\n\nTa kontakt for pris på transport.",
+      "bilete": ""
+    }
+  ],
+  "prosjekt": {
+    "ingress": "Et utvalg av prosjektene våre. Galleriet fylles med bilder fra egne anlegg og maskiner.",
+    "liste": [
+      {
+        "id": "p1",
+        "tittel": "Nye Øksenelvane kraftverk, Ålfoten",
+        "skildring": "Grunnarbeid som underentreprenør for Skanska ved byggingen av Nye Øksenelvane kraftverk i Bremanger. Hovedkontrakten mellom Skanska og Sogn og Fjordane Energi er på 434 millioner kroner, med byggestart i 2025 og ferdigstilling i 2028.",
+        "bilete": []
+      }
+    ]
+  },
+  "omOss": {
+    "ingress": "Geir Sandal AS er en maskinentreprenør i Deknepollen ved Måløy med 21 ansatte. Virksomheten har røtter tilbake til 1984 og har vært aksjeselskap siden 1997.",
+    "brodtekst": "Fra basen på Myrane i Deknepollen tar vi på oss oppdrag i Måløy, Kinn og hele Nordfjord – fra tomtegraving for private til større anlegg for hovedentreprenører og det offentlige. I 2024 omsatte selskapet for om lag 24 millioner kroner, og blant referansene våre er grunnarbeidet for Nye Øksenelvane kraftverk i Ålfoten, som underentreprenør for Skanska.\n\nKvalitet skal kunne dokumenteres: Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for veg- og grunnarbeider, landskapsutforming og VA-anlegg, gyldig til 29. desember 2028. Vi er også medlem i Norges Lastebileier-Forbund.\n\nVi tar samfunnsansvar på alvor. Som godkjent lærebedrift i anleggsmaskinførerfaget er vi med på å utdanne nye fagfolk, og i 2017 lakkerte vi en av gravemaskinene våre rosa og lovet 20 prosent av inntektene fra maskinen i et helt år til Brystkreftforeningen.",
+    "folk": [
+      { "namn": "Joakim Hessevik Sandal", "rolle": "Daglig leder" }
+    ]
+  },
+  "referansar": {
+    "vis": false,
+    "liste": []
+  },
+  "kontakt": {
+    "ingress": "Fortell oss kort om prosjektet ditt, så tar vi kontakt så snart vi kan. Du kan også ringe eller sende e-post direkte – det som passer deg best."
+  },
+  "seo": {
+    "heim": {
+      "tittel": "Geir Sandal AS – Maskinentreprenør i Måløy og Nordfjord",
+      "beskriving": "Geir Sandal AS er en maskinentreprenør i Deknepollen ved Måløy med 21 ansatte og røtter tilbake til 1984. Grunnarbeid, vei, VA-anlegg og massetransport. Ring 57 85 45 55."
+    },
+    "tenester": {
+      "tittel": "Tjenester – Geir Sandal AS",
+      "beskriving": "Grunnarbeid, graving, vei- og grunnarbeider, VA-anlegg, landskapsutforming og massetransport i Måløy, Kinn og Nordfjord. Sentralt godkjent i tiltaksklasse 2. Be om tilbud."
+    },
+    "prosjekt": {
+      "tittel": "Prosjekter – Geir Sandal AS",
+      "beskriving": "Se prosjekter utført av Geir Sandal AS, maskinentreprenør i Deknepollen – blant annet grunnarbeid for Nye Øksenelvane kraftverk som underentreprenør for Skanska."
+    },
+    "omOss": {
+      "tittel": "Om oss – Geir Sandal AS",
+      "beskriving": "Geir Sandal AS er en maskinentreprenør i Deknepollen ved Måløy med 21 ansatte, sentral godkjenning i tiltaksklasse 2 og røtter tilbake til 1984. Org.nr 978 620 779."
+    },
+    "kontakt": {
+      "tittel": "Kontakt oss – Geir Sandal AS",
+      "beskriving": "Kontakt Geir Sandal AS for et uforpliktende tilbud. Telefon 57 85 45 55, post@geirsandal.no. Myrane 14, 6718 Deknepollen."
+    },
+    "personvern": {
+      "tittel": "Personvern – Geir Sandal AS",
+      "beskriving": "Personvernerklæring for nettsidene til Geir Sandal AS."
+    }
+  },
+  "bilete": []
+}
