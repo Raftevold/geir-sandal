@@ -25,7 +25,7 @@
     "punkt": [
       {
         "tittel": "Sentralt godkjent foretak",
-        "tekst": "Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for vei- og grunnarbeider, landskapsutforming og VA-anlegg – gyldig til desember 2028."
+        "tekst": "Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for veg- og grunnarbeider, landskapsutforming og VA-anlegg – gyldig til 29. desember 2028."
       },
       {
         "tittel": "Lokal siden 1984",
@@ -50,8 +50,8 @@
       "id": "t2",
       "slug": "vei-og-grunnarbeid",
       "tittel": "Vei- og grunnarbeider",
-      "kort": "Sentralt godkjent i tiltaksklasse 2 for vei- og grunnarbeider.",
-      "brodtekst": "Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet som utførende i tiltaksklasse 2 for vei- og grunnarbeider. Det betyr at kompetansen og kvalitetssystemene våre er vurdert og godkjent av myndighetene.\n\nVi bygger og opparbeider veier, plasser og annen infrastruktur – fra mindre adkomstveier til større anlegg.\n\nTa kontakt for en prat om prosjektet ditt.",
+      "kort": "Sentralt godkjent i tiltaksklasse 2 for veg- og grunnarbeider.",
+      "brodtekst": "Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet som utførende i tiltaksklasse 2 for veg- og grunnarbeider (det offisielle navnet på godkjenningsområdet). Det betyr at kompetansen og kvalitetssystemene våre er vurdert og godkjent av myndighetene.\n\nVi bygger og opparbeider veier, plasser og annen infrastruktur – fra mindre adkomstveier til større anlegg.\n\nTa kontakt for en prat om prosjektet ditt.",
       "bilete": ""
     },
     {
@@ -85,14 +85,14 @@
       {
         "id": "p1",
         "tittel": "Nye Øksenelvane kraftverk, Ålfoten",
-        "skildring": "Grunnarbeid som underentreprenør for Skanska ved byggingen av Nye Øksenelvane kraftverk i Bremanger. Hovedkontrakten mellom Skanska og Sogn og Fjordane Energi er på 434 millioner kroner, med byggestart i 2025 og ferdigstilling i 2028. Kontrakten er omtalt i Fjordenes Tidende.",
+        "skildring": "Grunnarbeid som underentreprenør for Skanska ved byggingen av Nye Øksenelvane kraftverk i Bremanger. Hovedkontrakten mellom Skanska og Sogn og Fjordane Energi er på 434 millioner kroner, med byggestart i 2025 og ferdigstilling i 2028.",
         "bilete": []
       }
     ]
   },
   "omOss": {
     "ingress": "Geir Sandal AS er en maskinentreprenør i Deknepollen ved Måløy med 21 ansatte. Virksomheten har røtter tilbake til 1984 og har vært aksjeselskap siden 1997.",
-    "brodtekst": "Fra basen på Myrane i Deknepollen tar vi på oss oppdrag i Måløy, Kinn og hele Nordfjord – fra tomtegraving for private til større anlegg for hovedentreprenører og det offentlige. I 2024 omsatte selskapet for om lag 24 millioner kroner, og blant referansene våre er grunnarbeidet for Nye Øksenelvane kraftverk i Ålfoten, som underentreprenør for Skanska.\n\nKvalitet skal kunne dokumenteres: Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for vei- og grunnarbeider, landskapsutforming og VA-anlegg, gyldig til desember 2028. Vi er også medlem i Norges Lastebileier-Forbund.\n\nVi tar samfunnsansvar på alvor. Som godkjent lærebedrift i anleggsmaskinførerfaget er vi med på å utdanne nye fagfolk, og i 2017 lakkerte vi en av gravemaskinene våre rosa og ga 20 prosent av inntektene fra maskinen i et helt år til Brystkreftforeningens Rosa sløyfe-aksjon.",
+    "brodtekst": "Fra basen på Myrane i Deknepollen tar vi på oss oppdrag i Måløy, Kinn og hele Nordfjord – fra tomtegraving for private til større anlegg for hovedentreprenører og det offentlige. I 2024 omsatte selskapet for om lag 24 millioner kroner, og blant referansene våre er grunnarbeidet for Nye Øksenelvane kraftverk i Ålfoten, som underentreprenør for Skanska.\n\nKvalitet skal kunne dokumenteres: Geir Sandal AS har sentral godkjenning fra Direktoratet for byggkvalitet i tiltaksklasse 2 for veg- og grunnarbeider, landskapsutforming og VA-anlegg, gyldig til 29. desember 2028. Vi er også medlem i Norges Lastebileier-Forbund.\n\nVi tar samfunnsansvar på alvor. Som godkjent lærebedrift i anleggsmaskinførerfaget er vi med på å utdanne nye fagfolk, og i 2017 lakkerte vi en av gravemaskinene våre rosa og lovet 20 prosent av inntektene fra maskinen i et helt år til Brystkreftforeningen.",
     "folk": [
       { "namn": "Joakim Hessevik Sandal", "rolle": "Daglig leder" }
     ]
