@@ -288,6 +288,19 @@ details.a-element > .a-element-innhald { padding: 0.2rem 1.1rem 1.2rem; }
 .a-bilete-kort figcaption { font-size: 0.76rem; color: var(--a-gra); word-break: break-all; margin-top: 0.45rem; }
 .a-bruk { margin-top: 0.3rem; }
 
+/* ---------- Brukerhåndbok ---------- */
+.a-steg-liste { list-style: none; display: grid; gap: 0.45rem; margin: 0.7rem 0 0.9rem; counter-reset: steg; }
+.a-steg-liste li { display: flex; align-items: center; gap: 0.7rem; }
+.a-steg-liste li::before {
+  counter-increment: steg; content: counter(steg);
+  flex: none; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--a-amber); color: var(--a-jord);
+  font-weight: 800; font-size: 0.85rem; display: grid; place-items: center;
+}
+.a-mellomtittel { margin: 1.5rem 0 0.8rem; font-size: 1.05rem; }
+.a-element .a-element-innhald p + p { margin-top: 0.55rem; }
+.a-element .a-element-innhald { padding-top: 0.8rem; }
+
 /* ---------- Innlogging ---------- */
 .a-login-side {
   display: flex; align-items: center; justify-content: center; min-height: 100vh;

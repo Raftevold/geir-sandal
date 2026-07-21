@@ -9,6 +9,15 @@
     if (msg && !window.confirm(msg)) e.preventDefault();
   });
 
+  // Åpne riktig avsnitt når noen følger en lenke med #anker (f.eks. /admin/hjelp#seo)
+  function opnaFraHash() {
+    if (!location.hash) return;
+    var mal = document.querySelector('details' + location.hash);
+    if (mal) { mal.open = true; mal.scrollIntoView(); }
+  }
+  opnaFraHash();
+  window.addEventListener('hashchange', opnaFraHash);
+
   // Mobilmeny
   var burger = document.querySelector('.a-burger');
   var side = document.querySelector('.a-side');

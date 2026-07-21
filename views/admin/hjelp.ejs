@@ -1,0 +1,97 @@
+<%- include('partials/admin-topp', { tittel: 'Brukerhåndbok', aktiv: 'hjelp' }) %>
+
+<section class="a-seksjon">
+  <h2>Slik virker det</h2>
+  <ol class="a-steg-liste">
+    <li><strong>Endre</strong> – skriv i feltene eller velg bilder</li>
+    <li><strong>Lagre</strong> – trykk den gule knappen nederst i skjemaet</li>
+    <li><strong>Ferdig</strong> – endringen er synlig på nettsiden med en gang</li>
+  </ol>
+  <p class="a-svak">Alt du lagrer tas vare på automatisk. Gjør du en feil, kan alt tilbakestilles – ingenting kan ødelegges permanent. Trykk «Se nettsiden» i menyen for å se resultatet.</p>
+</section>
+
+<h2 class="a-mellomtittel">Sidene i menyen</h2>
+
+<details class="a-element" id="tekst">
+  <summary>📝 Tekst og forside</summary>
+  <div class="a-element-innhald">
+    <p><strong>Heroen</strong> er det store feltet øverst på forsiden – det første folk ser. Hold overskriften kort og tydelig.</p>
+    <p><strong>Nøkkeltallene</strong> (f.eks. «21 ansatte») teller seg opp med en animasjon når folk ruller ned siden.</p>
+    <p><strong>Om oss</strong>-teksten og folkene i bedriften endres nederst på samme side.</p>
+  </div>
+</details>
+
+<details class="a-element" id="tjenester">
+  <summary>🔧 Tjenester</summary>
+  <div class="a-element-innhald">
+    <p>Hver tjeneste får sin egen underside på nettsiden. Klikk på en tjeneste i listen for å åpne og redigere den.</p>
+    <p><strong>Kort beskrivelse</strong> vises på forsiden og i Google – én god setning holder.</p>
+    <p>Slette? Kryss av «Slett tjenesten når jeg lagrer» og trykk Lagre.</p>
+  </div>
+</details>
+
+<details class="a-element" id="prosjekter">
+  <summary>🏗️ Prosjekter</summary>
+  <div class="a-element-innhald">
+    <p>Referanser selger best! Legg ut bilder fra jobber dere er stolte av – gjerne med et par setninger om hva som ble gjort og hvor.</p>
+    <p>Du kan velge bilder fra arkivet <em>eller</em> laste opp nye direkte i skjemaet – begge deler i samme lagring.</p>
+  </div>
+</details>
+
+<details class="a-element" id="bilder">
+  <summary>🖼️ Bilder</summary>
+  <div class="a-element-innhald">
+    <p><strong>Dra og slipp</strong> bilder i det stiplede feltet (eller klikk på det). Bildene komprimeres automatisk, så du kan trygt laste opp rett fra mobilen.</p>
+    <p><strong>Alt-tekst</strong> er en kort beskrivelse av hva bildet viser, f.eks. «Gravemaskin i arbeid på tomt i Deknepollen». Den leses opp for blinde og hjelper Google å forstå bildet.</p>
+    <p>De grønne merkene viser hvor hvert bilde er i bruk. Sletter du et bilde, fjernes det også fra sidene som bruker det.</p>
+  </div>
+</details>
+
+<details class="a-element" id="referanser">
+  <summary>💬 Referanser</summary>
+  <div class="a-element-innhald">
+    <p>Korte kundeomtaler som kan vises på forsiden – slå dem på med avkryssingsboksen øverst.</p>
+    <p><strong>Viktig:</strong> spør alltid kunden om lov før dere publiserer navnet deres.</p>
+  </div>
+</details>
+
+<details class="a-element" id="kontaktinfo">
+  <summary>📞 Kontaktinfo</summary>
+  <div class="a-element-innhald">
+    <p>Telefon, e-post, adresse og åpningstider – vises øverst og nederst på alle sider. Endrer du telefonnummeret her, oppdateres alle ring-knappene på hele siden.</p>
+  </div>
+</details>
+
+<details class="a-element" id="varsel">
+  <summary>📣 Varsellinje</summary>
+  <div class="a-element-innhald">
+    <p>En gul linje øverst på alle sider – perfekt til «Vi har feriestengt uke 28–30» eller kampanjer. Slå den på, skriv teksten, lagre. Legger du inn en lenke, blir hele linjen klikkbar.</p>
+  </div>
+</details>
+
+<details class="a-element" id="seo">
+  <summary>🔍 SEO – hva er det?</summary>
+  <div class="a-element-innhald">
+    <p>SEO (søkemotoroptimalisering) handler om hvordan siden deres ser ut i Google-søk. Hvert treff i Google har to deler, og begge styrer du på SEO-siden:</p>
+    <p><strong>Tittel</strong> = den blå overskriften folk klikker på (hold den under ca. 60 tegn).<br>
+    <strong>Beskrivelse</strong> = teksten under (under ca. 155 tegn).</p>
+    <p>Skriv som en liten annonse: hva dere gjør + hvor + telefonnummer. Eksempel: «Grunnarbeid og graving i Måløy og Nordfjord. Ring 57 85 45 55.»</p>
+  </div>
+</details>
+
+<details class="a-element" id="henvendelser">
+  <summary>📥 Henvendelser</summary>
+  <div class="a-element-innhald">
+    <p>Alt som sendes inn via kontaktskjemaet havner her – med navn, telefon/e-post og melding. Svar kunden på telefon eller e-post.</p>
+    <p>Slett henvendelsen når den er ferdig behandlet – det er god personvernskikk.</p>
+  </div>
+</details>
+
+<section class="a-seksjon" style="margin-top: 1.4rem;">
+  <h2>Vanlige spørsmål</h2>
+  <p><strong>«Jeg ser ikke endringen min?»</strong> – Oppdater siden i nettleseren (Ctrl + F5 på PC, dra ned på mobil).</p>
+  <p><strong>«Siden bruker lang tid på å åpne?»</strong> – Etter et kvarter uten besøk «sovner» siden og bruker opptil et halvt minutt på å våkne. Helt normalt i demofasen.</p>
+  <p><strong>«Jeg har rotet meg bort / slettet noe!»</strong> – Ta det med ro. Alt kan tilbakestilles. Ring Tore på 938 70 063, så ordner det seg.</p>
+</section>
+
+<%- include('partials/admin-botn') %>

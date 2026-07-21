@@ -404,6 +404,10 @@ router.post('/seo', (req, res) =>
   })
 );
 
+// ---------- Hjelp ----------
+
+router.get('/hjelp', (req, res) => res.render('admin/hjelp'));
+
 // ---------- Henvendelser ----------
 
 router.get('/forespurnader', async (req, res) => {
