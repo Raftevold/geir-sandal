@@ -2,23 +2,27 @@
 
 <p class="a-ingress">Her endrer du innholdet på nettsiden til Geir Sandal AS. Alt du lagrer blir synlig på siden med en gang – ingen kode nødvendig.</p>
 
-<div class="a-kort-rad">
-  <a class="a-kort" href="/admin/tekst"><strong>📝 Tekst</strong><span>Overskrifter, brødtekst og «om oss»</span></a>
-  <a class="a-kort" href="/admin/tenester"><strong>🚜 Tjenester</strong><span>Legg til, endre eller fjern tjenester</span></a>
-  <a class="a-kort" href="/admin/prosjekt"><strong>🏗️ Prosjekter</strong><span>Vis frem arbeid dere har gjort</span></a>
-  <a class="a-kort" href="/admin/bilete"><strong>🖼️ Bilder</strong><span>Last opp og administrer bilder</span></a>
-  <a class="a-kort" href="/admin/referansar"><strong>💬 Referanser</strong><span>Kundeomtaler (husk samtykke!)</span></a>
-  <a class="a-kort" href="/admin/kontaktinfo"><strong>📞 Kontaktinfo</strong><span>Telefon, e-post, adresse, åpningstider</span></a>
-  <a class="a-kort" href="/admin/varsel"><strong>📣 Varsellinje</strong><span>Melding øverst på alle sider (ferie o.l.)</span></a>
-  <a class="a-kort" href="/admin/seo"><strong>🔍 SEO</strong><span>Titler og beskrivelser i Google</span></a>
-  <a class="a-kort" href="/admin/forespurnader"><strong>📥 Henvendelser <%= talSubmissions ? `(${talSubmissions})` : '' %></strong><span>Innsendte kontaktskjema</span></a>
+<div class="a-stat-rad">
+  <a class="a-stat" href="/admin/tenester"><strong><%= c.tenester.length %></strong><span>tjenester</span></a>
+  <a class="a-stat" href="/admin/prosjekt"><strong><%= c.prosjekt.liste.length %></strong><span>prosjekter</span></a>
+  <a class="a-stat" href="/admin/bilete"><strong><%= c.bilete.length %></strong><span>bilder</span></a>
+  <a class="a-stat" href="/admin/forespurnader"><strong><%= talSubmissions %></strong><span>henvendelser</span></a>
 </div>
 
-<h2>Status</h2>
-<ul class="a-status">
-  <li><%= lager === 'lokal' ? '⚠️' : '✅' %> Langtidslagring: <%= lager === 'postgres' ? 'database (Postgres) – endringer og bilder overlever omstart og redeploy' : lager === 'github' ? 'GitHub – endringer overlever omstart' : 'BARE lokale filer – endringer kan gå tapt ved redeploy' %></li>
-  <li><%= smtpAktiv ? '✅' : 'ℹ️' %> E-postvarsling: <%= smtpAktiv ? 'aktiv – henvendelser sendes på e-post' : 'ikke satt opp – henvendelser finner du bare under «Henvendelser»' %></li>
-  <li><%= sitePublic ? '🌍 Siden er åpen for søkemotorer (Google kan indeksere).' : '🔒 Demo-modus: siden er skjult for søkemotorer (noindex) til den er godkjent.' %></li>
-</ul>
+<div class="a-kort-rad">
+  <a class="a-kort" href="/admin/tekst"><strong>📝 Tekst og forside</strong><span>Overskrifter, nøkkeltall og «om oss»</span></a>
+  <a class="a-kort" href="/admin/bilete"><strong>🖼️ Last opp bilder</strong><span>Dra og slipp – med forhåndsvisning</span></a>
+  <a class="a-kort" href="/admin/prosjekt"><strong>🏗️ Vis frem et prosjekt</strong><span>Nye referanser selger best</span></a>
+  <a class="a-kort" href="/admin/varsel"><strong>📣 Varsellinje</strong><span>Ferie, kampanjer og driftsmeldinger</span></a>
+</div>
+
+<section class="a-seksjon">
+  <h2>Status</h2>
+  <ul class="a-status">
+    <li><span class="a-chip <%= lager === 'lokal' ? 'a-chip-obs' : 'a-chip-ok' %>"><%= lager === 'postgres' ? 'Database' : lager === 'github' ? 'GitHub' : 'Bare lokalt' %></span> Langtidslagring: <%= lager === 'postgres' ? 'endringer og bilder overlever omstart og redeploy' : lager === 'github' ? 'endringer overlever omstart og redeploy' : 'endringer kan gå tapt ved redeploy' %></li>
+    <li><span class="a-chip <%= smtpAktiv ? 'a-chip-ok' : '' %>"><%= smtpAktiv ? 'Aktiv' : 'Ikke satt opp' %></span> E-postvarsling: <%= smtpAktiv ? 'henvendelser sendes på e-post' : 'henvendelser finner du bare under «Henvendelser»' %></li>
+    <li><span class="a-chip <%= sitePublic ? 'a-chip-ok' : 'a-chip-obs' %>"><%= sitePublic ? 'Åpen' : 'Demo' %></span> <%= sitePublic ? 'Siden er åpen for søkemotorer (Google kan indeksere).' : 'Demo-modus: siden er skjult for søkemotorer (noindex) til den er godkjent.' %></li>
+  </ul>
+</section>
 
 <%- include('partials/admin-botn') %>

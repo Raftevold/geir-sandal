@@ -39,17 +39,45 @@ function slugify(text) {
 
 function back(res, section, ok, feil) {
   const q = feil ? `feil=${encodeURIComponent(feil)}` : ok ? 'lagra=1' : '';
-  res.redirect(`/admin/${section}${q ? '?' + q : ''}${section.includes('#') ? '' : ''}`);
+  res.redirect(`/admin/${section}${q ? '?' + q : ''}`);
 }
 
 async function trySave(res, section, mutate) {
   try {
-    mutate(getContent());
+    await mutate(getContent());
     await saveContent();
     back(res, section, true);
   } catch (err) {
     back(res, section, false, err.message);
   }
+}
+
+async function processImage(buffer) {
+  if (sharp) {
+    const out = await sharp(buffer)
+      .rotate()
+      .resize({ width: 1600, withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toBuffer();
+    return { buffer: out, ext: '.webp' };
+  }
+  return { buffer, ext: '.jpg' };
+}
+
+// Komprimerer og lagrer en opplastet fil, registrerer den i bildearkivet,
+// og returnerer filnavnet. Brukes både fra Bilder-siden og direkteopplasting.
+async function lagreOpplasting(file, altTekst, c) {
+  // Godta både korrekt mimetype og kjente bildeendelser (noen klienter sender
+  // octet-stream); sharp validerer uansett selve innholdet ved komprimering.
+  if (!/^image\//.test(file.mimetype) && !/\.(jpe?g|png|gif|webp|avif)$/i.test(file.originalname)) {
+    throw new Error(`«${file.originalname}» er ikke et bilde.`);
+  }
+  const { buffer, ext } = await processImage(file.buffer);
+  const base = slugify(file.originalname.replace(/\.[^.]+$/, ''));
+  const fil = `${base}-${crypto.randomUUID().slice(0, 6)}${ext}`;
+  await saveUpload(fil, buffer);
+  c.bilete.push({ fil, alt: (altTekst || '').trim() || base.replace(/-/g, ' ') });
+  return fil;
 }
 
 // ---------- Innlogging ----------
@@ -87,18 +115,22 @@ router.post('/logout', (req, res) => {
 
 router.use(auth.requireAdmin);
 
-// Felles malvariablar for admin-sider
-router.use((req, res, next) => {
+// Felles malvariabler for admin-sider (lagret-melding, feil, innboks-teller)
+router.use(async (req, res, next) => {
   res.locals.lagra = req.query.lagra === '1';
   res.locals.feil = req.query.feil || null;
+  try {
+    res.locals.talSubmissions = (await loadSubmissions()).length;
+  } catch {
+    res.locals.talSubmissions = 0;
+  }
   next();
 });
 
 // ---------- Oversikt ----------
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   res.render('admin/dashboard', {
-    talSubmissions: (await loadSubmissions()).length,
     sitePublic: cfg.sitePublic,
     lager: backendName(),
     smtpAktiv: require('../mailer').smtpConfigured()
@@ -117,16 +149,19 @@ router.post('/varsel', (req, res) =>
   })
 );
 
-// ---------- Tekstinnhald ----------
+// ---------- Tekstinnhold ----------
 
 router.get('/tekst', (req, res) => res.render('admin/tekst'));
 
-router.post('/tekst/heim', (req, res) =>
-  trySave(res, 'tekst', (c) => {
+router.post('/tekst/heim', upload.single('nyttBilete'), (req, res) =>
+  trySave(res, 'tekst', async (c) => {
     c.heim.heroEtikett = (req.body.heroEtikett || '').trim();
     c.heim.heroTittel = (req.body.heroTittel || '').trim();
     c.heim.heroIngress = (req.body.heroIngress || '').trim();
     c.heim.heroBilete = req.body.heroBilete || '';
+    if (req.file) {
+      c.heim.heroBilete = await lagreOpplasting(req.file, 'Hovedbilde på forsiden', c);
+    }
     c.heim.fakta = [0, 1, 2]
       .map((i) => ({
         tal: parseInt(req.body[`faktaTal${i}`], 10),
@@ -183,76 +218,86 @@ router.post('/kontaktinfo', (req, res) =>
   })
 );
 
-// ---------- Tenester ----------
+// ---------- Tjenester ----------
 
 router.get('/tenester', (req, res) => res.render('admin/tenester'));
 
-router.post('/tenester/ny', (req, res) =>
-  trySave(res, 'tenester', (c) => {
+router.post('/tenester/ny', upload.single('nyttBilete'), (req, res) =>
+  trySave(res, 'tenester', async (c) => {
     const tittel = (req.body.tittel || '').trim();
     if (!tittel) throw new Error('Tjenesten må ha en tittel.');
     let slug = slugify(tittel);
     while (c.tenester.some((t) => t.slug === slug)) slug += '-2';
-    c.tenester.push({
+    const t = {
       id: crypto.randomUUID().slice(0, 8),
       slug,
       tittel,
       kort: (req.body.kort || '').trim(),
       brodtekst: (req.body.brodtekst || '').trim(),
       bilete: req.body.bilete || ''
-    });
+    };
+    if (req.file) t.bilete = await lagreOpplasting(req.file, tittel, c);
+    c.tenester.push(t);
   })
 );
 
-router.post('/tenester/:id', (req, res) => {
+router.post('/tenester/:id', upload.single('nyttBilete'), (req, res) => {
   if (req.body.slett === 'on') {
     return trySave(res, 'tenester', (c) => {
       c.tenester = c.tenester.filter((t) => t.id !== req.params.id);
     });
   }
-  trySave(res, 'tenester', (c) => {
+  trySave(res, 'tenester', async (c) => {
     const t = c.tenester.find((x) => x.id === req.params.id);
     if (!t) throw new Error('Fant ikke tjenesten.');
     t.tittel = (req.body.tittel || '').trim() || t.tittel;
     t.kort = (req.body.kort || '').trim();
     t.brodtekst = (req.body.brodtekst || '').trim();
     t.bilete = req.body.bilete || '';
+    if (req.file) t.bilete = await lagreOpplasting(req.file, t.tittel, c);
   });
 });
 
-// ---------- Prosjekt ----------
+// ---------- Prosjekter ----------
 
 router.get('/prosjekt', (req, res) => res.render('admin/prosjekt'));
 
-router.post('/prosjekt/ny', (req, res) =>
-  trySave(res, 'prosjekt', (c) => {
+router.post('/prosjekt/ny', upload.array('nyeBilete', 10), (req, res) =>
+  trySave(res, 'prosjekt', async (c) => {
     const tittel = (req.body.tittel || '').trim();
     if (!tittel) throw new Error('Prosjektet må ha en tittel.');
-    c.prosjekt.liste.unshift({
+    const p = {
       id: crypto.randomUUID().slice(0, 8),
       tittel,
       skildring: (req.body.skildring || '').trim(),
       bilete: [].concat(req.body.bilete || []).filter(Boolean)
-    });
+    };
+    for (const f of req.files || []) {
+      p.bilete.push(await lagreOpplasting(f, tittel, c));
+    }
+    c.prosjekt.liste.unshift(p);
   })
 );
 
-router.post('/prosjekt/:id', (req, res) => {
+router.post('/prosjekt/:id', upload.array('nyeBilete', 10), (req, res) => {
   if (req.body.slett === 'on') {
     return trySave(res, 'prosjekt', (c) => {
       c.prosjekt.liste = c.prosjekt.liste.filter((p) => p.id !== req.params.id);
     });
   }
-  trySave(res, 'prosjekt', (c) => {
+  trySave(res, 'prosjekt', async (c) => {
     const p = c.prosjekt.liste.find((x) => x.id === req.params.id);
     if (!p) throw new Error('Fant ikke prosjektet.');
     p.tittel = (req.body.tittel || '').trim() || p.tittel;
     p.skildring = (req.body.skildring || '').trim();
     p.bilete = [].concat(req.body.bilete || []).filter(Boolean);
+    for (const f of req.files || []) {
+      p.bilete.push(await lagreOpplasting(f, p.tittel, c));
+    }
   });
 });
 
-// ---------- Referansar ----------
+// ---------- Referanser ----------
 
 router.get('/referansar', (req, res) => res.render('admin/referansar'));
 
@@ -290,46 +335,40 @@ router.post('/referansar/:id', (req, res) => {
   });
 });
 
-// ---------- Bilete ----------
+// ---------- Bilder ----------
 
-router.get('/bilete', (req, res) => res.render('admin/bilete'));
-
-async function processImage(buffer) {
-  if (sharp) {
-    const out = await sharp(buffer)
-      .rotate()
-      .resize({ width: 1600, withoutEnlargement: true })
-      .webp({ quality: 80 })
-      .toBuffer();
-    return { buffer: out, ext: '.webp' };
-  }
-  return { buffer, ext: '.jpg' };
+// Hvor er hvert bilde i bruk? Vises som merkelapper i bildearkivet.
+function bildebruk(c) {
+  const bruk = {};
+  const legg = (fil, kvar) => {
+    if (!fil) return;
+    (bruk[fil] = bruk[fil] || []).push(kvar);
+  };
+  legg(c.heim.heroBilete, 'Forsiden (hero)');
+  c.tenester.forEach((t) => legg(t.bilete, `Tjeneste: ${t.tittel}`));
+  c.prosjekt.liste.forEach((p) => p.bilete.forEach((b) => legg(b, `Prosjekt: ${p.tittel}`)));
+  return bruk;
 }
 
-router.post('/bilete/opplast', upload.array('filer'), async (req, res) => {
-  try {
-    if (!req.files || req.files.length === 0) throw new Error('Ingen filer valgt.');
-    const c = getContent();
-    for (const f of req.files) {
-      if (!/^image\//.test(f.mimetype)) throw new Error(`«${f.originalname}» er ikke et bilde.`);
-      const { buffer, ext } = await processImage(f.buffer);
-      const base = slugify(f.originalname.replace(/\.[^.]+$/, ''));
-      const fil = `${base}-${crypto.randomUUID().slice(0, 6)}${ext}`;
-      await saveUpload(fil, buffer);
-      c.bilete.push({ fil, alt: (req.body.alt || '').trim() || base.replace(/-/g, ' ') });
-    }
-    await saveContent();
-    back(res, 'bilete', true);
-  } catch (err) {
-    back(res, 'bilete', false, err.message);
-  }
+router.get('/bilete', (req, res) => {
+  res.render('admin/bilete', { bruk: bildebruk(getContent()) });
 });
+
+router.post('/bilete/opplast', upload.array('filer'), (req, res) =>
+  trySave(res, 'bilete', async (c) => {
+    if (!req.files || req.files.length === 0) throw new Error('Ingen filer valgt.');
+    const alts = [].concat(req.body.alt || []);
+    for (let i = 0; i < req.files.length; i++) {
+      await lagreOpplasting(req.files[i], alts[i], c);
+    }
+  })
+);
 
 router.post('/bilete/:fil/slett', async (req, res) => {
   try {
     const c = getContent();
     c.bilete = c.bilete.filter((b) => b.fil !== req.params.fil);
-    // Fjern referansar til biletet frå innhaldet
+    // Fjern referanser til bildet fra innholdet
     if (c.heim.heroBilete === req.params.fil) c.heim.heroBilete = '';
     c.tenester.forEach((t) => {
       if (t.bilete === req.params.fil) t.bilete = '';
@@ -365,7 +404,7 @@ router.post('/seo', (req, res) =>
   })
 );
 
-// ---------- Førespurnader ----------
+// ---------- Henvendelser ----------
 
 router.get('/forespurnader', async (req, res) => {
   res.render('admin/forespurnader', { liste: await loadSubmissions() });

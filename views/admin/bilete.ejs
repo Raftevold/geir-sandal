@@ -1,26 +1,33 @@
 <%- include('partials/admin-topp', { tittel: 'Bilder', aktiv: 'bilete' }) %>
 
-<p class="a-ingress">Bildene komprimeres og tilpasses nettsiden automatisk. Etter opplasting kan du bruke dem som hero-bilde, på tjenester og i prosjekter. Skriv alltid en god alt-tekst – det er viktig for blinde og svaksynte, og for Google.</p>
+<p class="a-ingress">Bildene komprimeres og tilpasses nettsiden automatisk. Skriv en god alt-tekst på hvert bilde – det er viktig for blinde og svaksynte, og for Google.</p>
 
 <section class="a-seksjon">
-  <h2>Last opp</h2>
+  <h2>Last opp nye bilder</h2>
   <form method="post" action="/admin/bilete/opplast" enctype="multipart/form-data">
-    <label for="filer">Velg bilder (du kan velge flere)</label>
-    <input id="filer" name="filer" type="file" accept="image/*" multiple required>
-    <label for="alt">Alt-tekst (hva viser bildet?)</label>
-    <input id="alt" name="alt" placeholder="F.eks. Gravemaskin i arbeid på tomt i Deknepollen" maxlength="150">
+    <div class="a-dropsone" data-forhand="#forhand-ny" role="button" tabindex="0" aria-label="Last opp bilder – klikk eller dra filer hit">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 16V6M7 11l5-5 5 5M4 19h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p><strong>Dra og slipp bilder hit</strong> – eller klikk for å velge filer</p>
+      <p class="a-svak">JPG, PNG eller WebP · flere om gangen · komprimeres automatisk</p>
+      <input id="filer" name="filer" type="file" accept="image/*" multiple>
+    </div>
+    <div id="forhand-ny" class="a-forhand"></div>
     <button class="a-knapp" type="submit">Last opp</button>
   </form>
 </section>
 
 <% if (c.bilete.length) { %>
 <section class="a-seksjon">
-  <h2>Opplastede bilder (<%= c.bilete.length %>)</h2>
+  <h2>Bildearkivet (<%= c.bilete.length %>)</h2>
   <div class="a-bilete-rad">
     <% c.bilete.forEach((b) => { %>
       <figure class="a-bilete-kort">
-        <img src="/media/<%= b.fil %>" alt="<%= b.alt %>" loading="lazy" width="200" height="130">
+        <img src="/media/<%= b.fil %>" alt="<%= b.alt %>" loading="lazy" width="220" height="147">
         <figcaption><%= b.fil %></figcaption>
+        <p class="a-bruk">
+          <% (bruk[b.fil] || []).forEach((kvar) => { %><span class="a-chip a-chip-ok"><%= kvar %></span><% }) %>
+          <% if (!(bruk[b.fil] || []).length) { %><span class="a-chip">Ikke i bruk ennå</span><% } %>
+        </p>
         <form method="post" action="/admin/bilete/<%= encodeURIComponent(b.fil) %>/alt">
           <label for="alt-<%= b.fil %>">Alt-tekst</label>
           <input id="alt-<%= b.fil %>" name="alt" value="<%= b.alt %>" maxlength="150">
@@ -34,7 +41,7 @@
   </div>
 </section>
 <% } else { %>
-<p>Ingen bilder er lastet opp ennå. Sidene bruker tydelig merkede plassholdere til dere laster opp egne foto.</p>
+<p class="a-ingress">Ingen bilder er lastet opp ennå. Sidene bruker tydelig merkede plassholdere til dere laster opp egne foto.</p>
 <% } %>
 
 <%- include('partials/admin-botn') %>

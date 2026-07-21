@@ -1,0 +1,21 @@
+<% /* Visuell bildevelger med miniatyrbilder.
+      Parametre: namn (feltnavn), vald (filnavn eller array), fleirval (bool),
+      tomEtikett (tekst på «Ingen»-valget, brukes bare ved enkeltvalg) */ %>
+<% if (c.bilete.length === 0 && fleirval) { %>
+  <p class="a-svak">Ingen bilder i arkivet ennå – last opp direkte under, eller via «Bilder» i menyen.</p>
+<% } else { %>
+<div class="a-velgar">
+  <% if (!fleirval) { %>
+    <label>
+      <input type="radio" name="<%= namn %>" value="" <%= !vald ? 'checked' : '' %>>
+      <span class="a-velgar-boks"><span class="a-velgar-tom"><%= tomEtikett %></span><span>Ingen</span></span>
+    </label>
+  <% } %>
+  <% c.bilete.forEach((b) => { const erVald = fleirval ? vald.includes(b.fil) : vald === b.fil; %>
+    <label>
+      <input type="<%= fleirval ? 'checkbox' : 'radio' %>" name="<%= namn %>" value="<%= b.fil %>" <%= erVald ? 'checked' : '' %>>
+      <span class="a-velgar-boks"><img src="/media/<%= b.fil %>" alt="<%= b.alt %>" loading="lazy" width="92" height="64"><span><%= b.fil %></span></span>
+    </label>
+  <% }) %>
+</div>
+<% } %>

@@ -10,7 +10,7 @@
 </head>
 <body class="a-login-side">
   <main class="a-login-boks">
-    <h1>🚜 Geir Sandal<br><span>Administrasjon</span></h1>
+    <h1><svg viewBox="0 0 64 48" style="width:40px;height:30px;vertical-align:-6px;color:#ffb224;" aria-hidden="true" focusable="false"><rect x="8" y="20" width="18" height="12" rx="2.5" fill="currentColor"/><rect x="11" y="12" width="9" height="10" rx="2" fill="currentColor"/><path d="M26 22 L42 8 L46 12 L32 24 Z" fill="currentColor"/><path d="M42 8 L52 15 L47 21 L41.5 14 Z" fill="currentColor"/><rect x="6" y="34" width="26" height="8" rx="4" fill="currentColor" opacity="0.55"/></svg> Geir Sandal<br><span>Administrasjon</span></h1>
     <% if (feil) { %><p class="a-melding a-melding-feil" role="alert"><%= feil %></p><% } %>
     <% if (!konfigurert) { %>
       <p class="a-melding a-melding-feil">Admin er ikke konfigurert ennå (ADMIN_PASSWORD_HASH mangler som miljøvariabel).</p>

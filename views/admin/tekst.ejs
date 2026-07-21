@@ -1,21 +1,22 @@
-<%- include('partials/admin-topp', { tittel: 'Tekstinnhold', aktiv: 'tekst' }) %>
+<%- include('partials/admin-topp', { tittel: 'Tekst og forside', aktiv: 'tekst' }) %>
 
 <section class="a-seksjon">
   <h2>Forsiden (hero)</h2>
-  <form method="post" action="/admin/tekst/heim">
+  <form method="post" action="/admin/tekst/heim" enctype="multipart/form-data">
     <label for="heroEtikett">Liten etikett over overskriften</label>
     <input id="heroEtikett" name="heroEtikett" value="<%= c.heim.heroEtikett %>" maxlength="70">
     <label for="heroTittel">Hovedoverskrift</label>
     <input id="heroTittel" name="heroTittel" value="<%= c.heim.heroTittel %>" maxlength="90">
     <label for="heroIngress">Ingress</label>
     <textarea id="heroIngress" name="heroIngress" rows="3" maxlength="400"><%= c.heim.heroIngress %></textarea>
-    <label for="heroBilete">Hero-bilde (valgfritt)</label>
-    <select id="heroBilete" name="heroBilete">
-      <option value="">– Ingen (vis illustrasjonen) –</option>
-      <% c.bilete.forEach((b) => { %>
-        <option value="<%= b.fil %>" <%= c.heim.heroBilete === b.fil ? 'selected' : '' %>><%= b.fil %></option>
-      <% }) %>
-    </select>
+
+    <fieldset>
+      <legend>Hero-bilde</legend>
+      <p class="a-svak">Velg et bilde – eller behold den animerte gravemaskin-illustrasjonen.</p>
+      <%- include('partials/bileteveljar', { namn: 'heroBilete', vald: c.heim.heroBilete, fleirval: false, tomEtikett: 'Illustrasjon' }) %>
+      <%- include('partials/filfelt', { namn: 'nyttBilete', fleire: false, etikett: 'Eller last opp et nytt bilde direkte' }) %>
+    </fieldset>
+
     <fieldset>
       <legend>Nøkkeltall i heroen (tallene teller seg opp på siden)</legend>
       <% [0,1,2].forEach((i) => { const f = (c.heim.fakta || [])[i] || { tal: '', suffiks: '', etikett: '' }; %>
@@ -26,6 +27,7 @@
         </div>
       <% }) %>
     </fieldset>
+
     <fieldset>
       <legend>De tre punktene under heroen</legend>
       <% [0,1,2].forEach((i) => { const p = c.heim.punkt[i] || { tittel: '', tekst: '' }; %>

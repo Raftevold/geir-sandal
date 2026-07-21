@@ -1,41 +1,48 @@
 <%- include('partials/admin-topp', { tittel: 'Tjenester', aktiv: 'tenester' }) %>
 
-<p class="a-ingress">Tjenestene vises på forsiden og på /tjenester. Hver tjeneste får sin egen underside.</p>
+<p class="a-ingress">Tjenestene vises på forsiden og på /tjenester. Hver tjeneste har sin egen underside. Klikk på en tjeneste for å redigere den.</p>
 
-<% c.tenester.forEach((t) => { %>
-<section class="a-seksjon">
-  <h2><%= t.tittel %> <span class="a-svak">(/tjenester/<%= t.slug %>)</span></h2>
-  <form method="post" action="/admin/tenester/<%= t.id %>">
-    <label for="tittel-<%= t.id %>">Tittel</label>
-    <input id="tittel-<%= t.id %>" name="tittel" value="<%= t.tittel %>" maxlength="60">
-    <label for="kort-<%= t.id %>">Kort beskrivelse (vises på kort og i Google)</label>
-    <input id="kort-<%= t.id %>" name="kort" value="<%= t.kort %>" maxlength="160">
-    <label for="brodtekst-<%= t.id %>">Brødtekst på undersiden</label>
-    <textarea id="brodtekst-<%= t.id %>" name="brodtekst" rows="6"><%= t.brodtekst %></textarea>
-    <label for="bilete-<%= t.id %>">Bilde</label>
-    <select id="bilete-<%= t.id %>" name="bilete">
-      <option value="">– Plassholder (ingen bilder ennå) –</option>
-      <% c.bilete.forEach((b) => { %>
-        <option value="<%= b.fil %>" <%= t.bilete === b.fil ? 'selected' : '' %>><%= b.fil %></option>
-      <% }) %>
-    </select>
-    <div class="a-knapp-rad">
-      <button class="a-knapp" type="submit">Lagre</button>
-      <label class="a-slett"><input type="checkbox" name="slett"> Slett tjenesten når jeg lagrer</label>
-    </div>
-  </form>
-</section>
+<% c.tenester.forEach((t) => { const bilde = c.bilete.find((b) => b.fil === t.bilete); %>
+<details class="a-element">
+  <summary>
+    <% if (bilde) { %><img class="a-mini" src="/media/<%= bilde.fil %>" alt="" loading="lazy" width="52" height="38"><% } else { %><span class="a-mini-tom">Foto</span><% } %>
+    <%= t.tittel %>
+    <span class="a-svak">/tjenester/<%= t.slug %></span>
+  </summary>
+  <div class="a-element-innhald">
+    <form method="post" action="/admin/tenester/<%= t.id %>" enctype="multipart/form-data">
+      <label for="tittel-<%= t.id %>">Tittel</label>
+      <input id="tittel-<%= t.id %>" name="tittel" value="<%= t.tittel %>" maxlength="60">
+      <label for="kort-<%= t.id %>">Kort beskrivelse (vises på kort og i Google)</label>
+      <input id="kort-<%= t.id %>" name="kort" value="<%= t.kort %>" maxlength="160">
+      <label for="brodtekst-<%= t.id %>">Brødtekst på undersiden</label>
+      <textarea id="brodtekst-<%= t.id %>" name="brodtekst" rows="6"><%= t.brodtekst %></textarea>
+
+      <fieldset>
+        <legend>Bilde</legend>
+        <%- include('partials/bileteveljar', { namn: 'bilete', vald: t.bilete, fleirval: false, tomEtikett: 'Plassholder' }) %>
+        <%- include('partials/filfelt', { namn: 'nyttBilete', fleire: false, etikett: 'Eller last opp et nytt bilde direkte' }) %>
+      </fieldset>
+
+      <div class="a-knapp-rad">
+        <button class="a-knapp" type="submit">Lagre</button>
+        <label class="a-slett"><input type="checkbox" name="slett"> Slett tjenesten når jeg lagrer</label>
+      </div>
+    </form>
+  </div>
+</details>
 <% }) %>
 
 <section class="a-seksjon a-seksjon-ny">
   <h2>➕ Ny tjeneste</h2>
-  <form method="post" action="/admin/tenester/ny">
+  <form method="post" action="/admin/tenester/ny" enctype="multipart/form-data">
     <label for="ny-tittel">Tittel</label>
     <input id="ny-tittel" name="tittel" maxlength="60" placeholder="F.eks. Snøbrøyting">
     <label for="ny-kort">Kort beskrivelse</label>
     <input id="ny-kort" name="kort" maxlength="160">
     <label for="ny-brodtekst">Brødtekst</label>
     <textarea id="ny-brodtekst" name="brodtekst" rows="4"></textarea>
+    <%- include('partials/filfelt', { namn: 'nyttBilete', fleire: false, etikett: 'Last opp bilde (valgfritt)' }) %>
     <button class="a-knapp" type="submit">Opprett tjeneste</button>
   </form>
 </section>

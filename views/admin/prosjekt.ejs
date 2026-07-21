@@ -1,42 +1,50 @@
 <%- include('partials/admin-topp', { tittel: 'Prosjekter', aktiv: 'prosjekt' }) %>
 
-<p class="a-ingress">Prosjektene vises på /prosjekter. Last først opp bilder under «Bilder», så kan du velge dem her. Hold Ctrl (⌘ på Mac) for å velge flere bilder.</p>
+<p class="a-ingress">Prosjektene vises på /prosjekter – nye referanser selger best. Klikk på et prosjekt for å redigere det, eller last opp bilder direkte når du oppretter et nytt.</p>
 
-<% c.prosjekt.liste.forEach((p) => { %>
-<section class="a-seksjon">
-  <h2><%= p.tittel %></h2>
-  <form method="post" action="/admin/prosjekt/<%= p.id %>">
-    <label for="tittel-<%= p.id %>">Tittel</label>
-    <input id="tittel-<%= p.id %>" name="tittel" value="<%= p.tittel %>" maxlength="80">
-    <label for="skildring-<%= p.id %>">Beskrivelse</label>
-    <textarea id="skildring-<%= p.id %>" name="skildring" rows="4"><%= p.skildring %></textarea>
-    <label for="bilete-<%= p.id %>">Bilder (flervalg)</label>
-    <select id="bilete-<%= p.id %>" name="bilete" multiple size="5">
-      <% c.bilete.forEach((b) => { %>
-        <option value="<%= b.fil %>" <%= p.bilete.includes(b.fil) ? 'selected' : '' %>><%= b.fil %></option>
-      <% }) %>
-    </select>
-    <div class="a-knapp-rad">
-      <button class="a-knapp" type="submit">Lagre</button>
-      <label class="a-slett"><input type="checkbox" name="slett"> Slett prosjektet når jeg lagrer</label>
-    </div>
-  </form>
-</section>
+<% c.prosjekt.liste.forEach((p) => { const forsteBilde = c.bilete.find((b) => b.fil === p.bilete[0]); %>
+<details class="a-element">
+  <summary>
+    <% if (forsteBilde) { %><img class="a-mini" src="/media/<%= forsteBilde.fil %>" alt="" loading="lazy" width="52" height="38"><% } else { %><span class="a-mini-tom">Foto</span><% } %>
+    <%= p.tittel %>
+    <% if (p.bilete.length) { %><span class="a-svak"><%= p.bilete.length %> bilde<%= p.bilete.length === 1 ? '' : 'r' %></span><% } %>
+  </summary>
+  <div class="a-element-innhald">
+    <form method="post" action="/admin/prosjekt/<%= p.id %>" enctype="multipart/form-data">
+      <label for="tittel-<%= p.id %>">Tittel</label>
+      <input id="tittel-<%= p.id %>" name="tittel" value="<%= p.tittel %>" maxlength="80">
+      <label for="skildring-<%= p.id %>">Beskrivelse</label>
+      <textarea id="skildring-<%= p.id %>" name="skildring" rows="4"><%= p.skildring %></textarea>
+
+      <fieldset>
+        <legend>Bilder (velg så mange du vil)</legend>
+        <%- include('partials/bileteveljar', { namn: 'bilete', vald: p.bilete, fleirval: true, tomEtikett: '' }) %>
+        <%- include('partials/filfelt', { namn: 'nyeBilete', fleire: true, etikett: 'Eller last opp nye bilder direkte' }) %>
+      </fieldset>
+
+      <div class="a-knapp-rad">
+        <button class="a-knapp" type="submit">Lagre</button>
+        <label class="a-slett"><input type="checkbox" name="slett"> Slett prosjektet når jeg lagrer</label>
+      </div>
+    </form>
+  </div>
+</details>
 <% }) %>
 
 <section class="a-seksjon a-seksjon-ny">
   <h2>➕ Nytt prosjekt</h2>
-  <form method="post" action="/admin/prosjekt/ny">
+  <form method="post" action="/admin/prosjekt/ny" enctype="multipart/form-data">
     <label for="ny-tittel">Tittel</label>
     <input id="ny-tittel" name="tittel" maxlength="80" placeholder="F.eks. Tomtegraving, Måløy">
     <label for="ny-skildring">Beskrivelse</label>
     <textarea id="ny-skildring" name="skildring" rows="3"></textarea>
-    <label for="ny-bilete">Bilder (flervalg)</label>
-    <select id="ny-bilete" name="bilete" multiple size="5">
-      <% c.bilete.forEach((b) => { %>
-        <option value="<%= b.fil %>"><%= b.fil %></option>
-      <% }) %>
-    </select>
+    <% if (c.bilete.length) { %>
+    <fieldset>
+      <legend>Velg fra bildearkivet (valgfritt)</legend>
+      <%- include('partials/bileteveljar', { namn: 'bilete', vald: [], fleirval: true, tomEtikett: '' }) %>
+    </fieldset>
+    <% } %>
+    <%- include('partials/filfelt', { namn: 'nyeBilete', fleire: true, etikett: 'Last opp bilder (valgfritt)' }) %>
     <button class="a-knapp" type="submit">Opprett prosjekt</button>
   </form>
 </section>
