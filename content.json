@@ -156,5 +156,10 @@
       "beskriving": "Personvernerklæring for nettsidene til Geir Sandal AS."
     }
   },
-  "bilete": []
+  "bilete": [
+    {
+      "fil": "finalevm-5174d3.webp",
+      "alt": "test"
+    }
+  ]
 }
